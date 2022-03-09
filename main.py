@@ -22,9 +22,8 @@ class Card:
         return (self.symbol, self.number)
     
 class SpecialCard:
-    symbol = 'special'
-    
-    def __init__(self, number):
+    def __init__(self, symbol, number):
+        self.symbol = symbol
         self.number = number
         
     def showMe(self):
@@ -49,17 +48,13 @@ def init_deck():
     color_list = ['green', 'red', 'blue', 'black']
         
     for color in color_list:
-        for i in range(2, 11):
+        for i in range(2, 14):
             card_list.append(Card(color, i))
         
-        card_list.append(Card(color, 'J'))
-        card_list.append(Card(color, 'Q'))
-        card_list.append(Card(color, 'K'))
-        
-    special_list = ['bird', 'pheonix', 'dragon', 'dog']
+    special_list = {'bird': 1, 'pheonix': 0, 'dragon': 99, 'dog': 0}
     
-    for symbol in special_list:
-        card_list.append(SpecialCard(symbol))
+    for key, value in special_list.items():
+        card_list.append(SpecialCard(key, value))
         
     return sorted(card_list, key=lambda card: card.symbol)
 
